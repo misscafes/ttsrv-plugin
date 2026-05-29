@@ -2,6 +2,14 @@
 
 ## 变更记录
 
+### 6.68
+- **版本号**：6.68（内部 version: 61）
+- **改动点**：
+  1. 重构 `showReleaseSingleDialog`：释放单个时列出所有可释放的**具体别名**（带所属角色提示），支持**多选**。
+  2. 新增 `doReleaseSelectedAliases`：按角色分组处理被选中的别名，仅释放用户勾选的别名，其余别名保留在原角色中。
+  3. 按角色索引降序处理，避免插入新角色导致后续索引错位。
+- **新增/修复**：避免一次性释放角色全部别名，支持精细化选择要拆分的别名。
+
 ### 6.67
 - **版本号**：6.67（内部 version: 60）
 - **改动点**：
@@ -24,16 +32,18 @@
 ## 会话摘要
 
 ### 2026-05-30
-- **当前版本**：6.67
+- **当前版本**：6.68
 - **主目录结构**：
   ```
   ttsrv-plugin/
   ├── AGENTS.md
   ├── .gitignore
   ├── TODO.md
-  ├── ttsrv-plugin-角色管理6.65.json
-  ├── ttsrv-plugin-角色管理6.66.json
-  └── ttsrv-plugin-角色管理6.67.json
+  ├── ttsrv-plugin-角色管理6.68.json
+  └── 历史版本/
+      ├── ttsrv-plugin-角色管理6.65.json
+      ├── ttsrv-plugin-角色管理6.66.json
+      └── ttsrv-plugin-角色管理6.67.json
   ```
 - **已完成事项**：
   - 备份并创建 6.66 版本文件。
@@ -44,6 +54,9 @@
   - 备份并创建 6.67 版本文件。
   - 重构 `doReleaseOperation`，新增释放全部/释放单个选择对话框。
   - 新增 `showReleaseSingleDialog`、`doReleaseAllOperation`、`doReleaseSingleOperation`。
+  - 备份并创建 6.68 版本文件。
+  - 重构 `showReleaseSingleDialog`：列出所有具体别名，支持多选释放。
+  - 新增 `doReleaseSelectedAliases`，仅释放被选中的别名。
 - **仓库与推送**：
   - GitHub 新仓库 `misscafes/ttsrv-plugin` 已创建并推送成功：`https://github.com/misscafes/ttsrv-plugin`
   - cnb.cool 远程 `misscafe.eec/ttsrv-plugin` 已强制推送同步，旧历史已备份到 `backup` 分支。origin 已配置双推（GitHub + cnb.cool）。
