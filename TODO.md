@@ -2,6 +2,14 @@
 
 ## 变更记录
 
+### 6.67
+- **版本号**：6.67（内部 version: 60）
+- **改动点**：
+  1. 重构 `doReleaseOperation`：释放角色时新增选择对话框，提供 **"释放全部"** 与 **"释放单个"** 两个选项。
+  2. 新增 `showReleaseSingleDialog`：选择"释放单个"时弹出角色列表，仅从当前已选中的、且带有别名的角色中选择目标。
+  3. 新增 `doReleaseAllOperation` 与 `doReleaseSingleOperation`，分别处理批量释放与单角色释放逻辑。
+- **新增/修复**：避免误操作释放全部角色，支持精确释放单个角色的别名。
+
 ### 6.66
 - **版本号**：6.66（内部 version: 59）
 - **改动点**：
@@ -16,14 +24,16 @@
 ## 会话摘要
 
 ### 2026-05-30
-- **当前版本**：6.66
+- **当前版本**：6.67
 - **主目录结构**：
   ```
   ttsrv-plugin/
   ├── AGENTS.md
+  ├── .gitignore
   ├── TODO.md
   ├── ttsrv-plugin-角色管理6.65.json
-  └── ttsrv-plugin-角色管理6.66.json
+  ├── ttsrv-plugin-角色管理6.66.json
+  └── ttsrv-plugin-角色管理6.67.json
   ```
 - **已完成事项**：
   - 备份并创建 6.66 版本文件。
@@ -31,6 +41,9 @@
   - 从3个 `showFirstDialog` 的 options 数组中移除"设为核心女"、"设为核心男"。
   - 同步调整3处 `switch/case` 编号。
   - 更新顶层及 code 内部的 `name` 和 `version` 字段。
+  - 备份并创建 6.67 版本文件。
+  - 重构 `doReleaseOperation`，新增释放全部/释放单个选择对话框。
+  - 新增 `showReleaseSingleDialog`、`doReleaseAllOperation`、`doReleaseSingleOperation`。
 - **仓库与推送**：
   - GitHub 新仓库 `misscafes/ttsrv-plugin` 已创建并推送成功：`https://github.com/misscafes/ttsrv-plugin`
   - cnb.cool 远程 `misscafe.eec/ttsrv-plugin` 已强制推送同步，旧历史已备份到 `backup` 分支。origin 已配置双推（GitHub + cnb.cool）。
