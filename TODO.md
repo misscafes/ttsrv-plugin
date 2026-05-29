@@ -31,6 +31,9 @@
   - 从3个 `showFirstDialog` 的 options 数组中移除"设为核心女"、"设为核心男"。
   - 同步调整3处 `switch/case` 编号。
   - 更新顶层及 code 内部的 `name` 和 `version` 字段。
+- **仓库与推送**：
+  - GitHub 新仓库 `misscafes/ttsrv-plugin` 已创建并推送成功：`https://github.com/misscafes/ttsrv-plugin`
+  - cnb.cool 远程 `misscafe.eec/ttsrv-plugin` 已存在旧历史（含之前的合并请求），无法直接 fast-forward 推送，需手动合并或强制推送。
 - **注意事项**：
   - `setAsCoreFemaleCharacter()` 和 `setAsCoreMaleCharacter()` 函数定义仍保留在代码中（仅移除了菜单入口）。
   - `js/` 目录和 `extract-js.js` 尚未初始化，如需提取 JS 请先生成脚本。
