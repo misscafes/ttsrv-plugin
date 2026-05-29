@@ -2,6 +2,13 @@
 
 ## 变更记录
 
+### 6.69
+- **版本号**：6.69（内部 version: 61）
+- **改动点**：
+  1. 修复 `refreshCharacterData`：不再始终读取全局 `characterRecords.json`，改为根据 `cunfang.txt` 获取当前书籍名，从对应的 `shuming.当前书籍.json` 加载角色数据。
+  2. 修复后同步调用 `initBookSpinner()`，确保书籍下拉框与当前书籍保持一致。
+- **新增/修复**：解决书籍切换后角色列表仍显示旧数据的问题；解决角色列表不显示已分配角色（发音人）的问题。
+
 ### 6.68
 - **版本号**：6.68（内部 version: 61）
 - **改动点**：
@@ -32,18 +39,19 @@
 ## 会话摘要
 
 ### 2026-05-30
-- **当前版本**：6.68
+- **当前版本**：6.69
 - **主目录结构**：
   ```
   ttsrv-plugin/
   ├── AGENTS.md
   ├── .gitignore
   ├── TODO.md
-  ├── ttsrv-plugin-角色管理6.68.json
+  ├── ttsrv-plugin-角色管理6.69.json
   └── 历史版本/
       ├── ttsrv-plugin-角色管理6.65.json
       ├── ttsrv-plugin-角色管理6.66.json
-      └── ttsrv-plugin-角色管理6.67.json
+      ├── ttsrv-plugin-角色管理6.67.json
+      └── ttsrv-plugin-角色管理6.68.json
   ```
 - **已完成事项**：
   - 备份并创建 6.66 版本文件。
@@ -57,6 +65,8 @@
   - 备份并创建 6.68 版本文件。
   - 重构 `showReleaseSingleDialog`：列出所有具体别名，支持多选释放。
   - 新增 `doReleaseSelectedAliases`，仅释放被选中的别名。
+  - 备份并创建 6.69 版本文件。
+  - 修复 `refreshCharacterData`：按当前书籍加载 `shuming.XXX.json`，同步刷新 `initBookSpinner`。
 - **仓库与推送**：
   - GitHub 新仓库 `misscafes/ttsrv-plugin` 已创建并推送成功：`https://github.com/misscafes/ttsrv-plugin`
   - cnb.cool 远程 `misscafe.eec/ttsrv-plugin` 已强制推送同步，旧历史已备份到 `backup` 分支。origin 已配置双推（GitHub + cnb.cool）。
