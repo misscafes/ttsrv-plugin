@@ -2,6 +2,17 @@
 
 ## 变更记录
 
+### 6.71
+- **版本号**：6.71（内部 version: 20260531）
+- **改动点**：
+  1. 删除 `onLoadUI` 内部覆盖 `EditorJS` 的残代码（约第 3233 行），避免下次打开设置页面时执行残缺的 `onLoadUI`。
+  2. 删除重复的 `refreshCharacterData`（保留从 `shuming.当前书籍.json` 读取的版本，与 6.69 设计保持一致）。
+  3. 修复 `restoreBackup`：恢复备份后补上 `replaceFayinrenName` 正向映射，避免恢复后发音人显示为存储值。
+  4. 修复释放别名创建新角色时 `voice` 硬编码为空字符串的问题，改为继承原角色发音人（`character.voice || "默认发音人"`）。
+  5. 删除 `onLoadUI` 内部后面重复定义的 `getCurrentBookName`、`getBookList`、`saveCurrentBookBeforeSwitch`、`useBook` 函数组。
+  6. 删除全局作用域中多余的 `saveCurrentBookBeforeSwitch`、`useBook` 函数定义（约第 5410 行），避免操作全局未初始化的 `characterRecords`。
+- **新增/修复**：解决角色列表不显示/丢失发音人的问题；清理代码中大量重复/冗余函数定义。
+
 ### 6.69
 - **版本号**：6.69（内部 version: 61）
 - **改动点**：
@@ -39,37 +50,34 @@
 ## 会话摘要
 
 ### 2026-05-30
-- **当前版本**：6.69
+- **当前版本**：6.71
 - **主目录结构**：
   ```
   ttsrv-plugin/
   ├── AGENTS.md
   ├── .gitignore
   ├── TODO.md
-  ├── ttsrv-plugin-角色管理6.69.json
+  ├── ttsrv-plugin-角色管理6.71.json
   └── 历史版本/
       ├── ttsrv-plugin-角色管理6.65.json
       ├── ttsrv-plugin-角色管理6.66.json
       ├── ttsrv-plugin-角色管理6.67.json
-      └── ttsrv-plugin-角色管理6.68.json
+      ├── ttsrv-plugin-角色管理6.68.json
+      └── ttsrv-plugin-角色管理6.69.json
   ```
 - **已完成事项**：
-  - 备份并创建 6.66 版本文件。
-  - 从 `PRESET_KEYWORDS_ROW3` 移除"核心女"、"核心男"。
-  - 从3个 `showFirstDialog` 的 options 数组中移除"设为核心女"、"设为核心男"。
-  - 同步调整3处 `switch/case` 编号。
-  - 更新顶层及 code 内部的 `name` 和 `version` 字段。
-  - 备份并创建 6.67 版本文件。
-  - 重构 `doReleaseOperation`，新增释放全部/释放单个选择对话框。
-  - 新增 `showReleaseSingleDialog`、`doReleaseAllOperation`、`doReleaseSingleOperation`。
-  - 备份并创建 6.68 版本文件。
-  - 重构 `showReleaseSingleDialog`：列出所有具体别名，支持多选释放。
-  - 新增 `doReleaseSelectedAliases`，仅释放被选中的别名。
-  - 备份并创建 6.69 版本文件。
-  - 修复 `refreshCharacterData`：按当前书籍加载 `shuming.XXX.json`，同步刷新 `initBookSpinner`。
+  - 备份并创建 6.71 版本文件（基于 6.70 修复）。
+  - 删除 `onLoadUI` 内部覆盖 `EditorJS` 的残代码，避免下次打开设置页面执行残缺 `onLoadUI`。
+  - 删除重复的 `refreshCharacterData`，保留从 `shuming` 读取的版本。
+  - 修复 `restoreBackup`：恢复备份后补上 `replaceFayinrenName` 正向映射。
+  - 修复释放别名：新角色继承原角色发音人（不再硬编码为空字符串）。
+  - 删除 `onLoadUI` 内部后面重复的书籍切换函数组。
+  - 删除全局作用域中多余的 `saveCurrentBookBeforeSwitch`、`useBook` 函数定义。
+  - 更新 TODO.md 变更记录。
+  - Git 提交并推送到远程仓库。
 - **仓库与推送**：
   - GitHub 新仓库 `misscafes/ttsrv-plugin` 已创建并推送成功：`https://github.com/misscafes/ttsrv-plugin`
   - cnb.cool 远程 `misscafe.eec/ttsrv-plugin` 已强制推送同步，旧历史已备份到 `backup` 分支。origin 已配置双推（GitHub + cnb.cool）。
 - **注意事项**：
-  - `setAsCoreFemaleCharacter()` 和 `setAsCoreMaleCharacter()` 函数定义仍保留在代码中（仅移除了菜单入口）。
+  - 6.71 主要解决角色列表不显示/丢失发音人的问题，根源是代码中存在大量重复/冗余函数定义及残缺的 `EditorJS` 覆盖代码。
   - `js/` 目录和 `extract-js.js` 尚未初始化，如需提取 JS 请先生成脚本。
